@@ -10,7 +10,7 @@ import helmet from "helmet";
 // Properties
 import properties from "../properties.js";
 //Data
-import bmi_calculator from "../get_bmi_data";
+import bmi_calculator from "../code/get_bmi_data";
 class Server {
   constructor() {
     this.app = express();

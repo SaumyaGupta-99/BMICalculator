@@ -1,4 +1,20 @@
-export const bmi_category=function (bmi_index){  
+const bmi_data_calculator={
+validate_input_data:function(patient_data){
+  if(patient_data["HeightCm"]=="" || patient_data["WeightKg"]=="" || patient_data["Gender"]=="")
+  {
+    console.log("Missing Data encountered");
+    return false;
+  }
+  //Assuming Minimum height and weight of a person posible is 45 cm and 2 kg
+  else if(patient_data["HeightCm"]<=40 || patient_data["WeightKg"]<=2){
+    console.log("Incorrect data encountered at position");
+    return false;
+    }
+   else
+    return true;
+},
+
+bmi_category:function (bmi_index){  
   if(bmi_index<18.5)
   return "Under Weight";
   else if(bmi_index>=18.5 && bmi_index<25)
@@ -11,8 +27,8 @@ export const bmi_category=function (bmi_index){
   return "Severely obese";
   else
   return "Very Severely obese";
-  };
- export const health_risk_category=function(bmi_index){  
+  },
+ health_risk_category:function(bmi_index){  
     if(bmi_index<18.5)
     return "Malnutrition risk";
     else if(bmi_index>=18.5 && bmi_index<25)
@@ -25,7 +41,9 @@ export const bmi_category=function (bmi_index){
     return "High risk";
     else
     return "Very high risk";
-    };
-export const bmi_index_calculator=function (height,weight){
+    },
+bmi_index_calculator:function (height,weight){
 return (weight/(height*height));
-};
+}
+}
+module.exports=bmi_data_calculator;
