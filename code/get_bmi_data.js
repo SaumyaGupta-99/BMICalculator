@@ -19,7 +19,6 @@ const bmi_calculator={
             if(bmi_data_calculator.validate_input_data(patients_data[i])){
                 var height=patients_data[i]["HeightCm"]/100;
                 var BMI_index=bmi_data_calculator.bmi_index_calculator(height,patients_data[i]["WeightKg"]);
-                BMI_index=BMI_index.toFixed(2);
                 var BMI_category=bmi_data_calculator.bmi_category(BMI_index);
                 var Health_risk=bmi_data_calculator.health_risk_category(BMI_index);
                 patients_data[i]["bmi_index"]=BMI_index;
@@ -40,21 +39,13 @@ const bmi_calculator={
     },
     count:async (req, res) =>{
         try{
-        if(patients_data.length==0)
-        res.json(0);
-        else{
-            if(!("bmi_index" in patients_data[0]))
-            res.json("BMI Data has not been calculated yet. First Calculate BMI Data");
-            else
-            {
-                var count=0;
-                for(var i=0;i<patients_data.length;i++){
-                if(patients_data[i]["bmi_category"]=="Overweight")
-                count+=1;
-                }  
-                res.json(count);
-            }
-        }
+         var result =bmi_data_calculator.count_overweight_people(patients_data);
+         if(result==-1){
+         res.json("BMI Data has not been calculated yet. First Calculate BMI Data");
+         }
+         else{
+         res.json(result);
+         }
     }
     catch (err) {
         res.status(err);
