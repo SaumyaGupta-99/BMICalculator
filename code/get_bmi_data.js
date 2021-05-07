@@ -3,7 +3,7 @@ import properties from "../properties";
 const patients_data=properties.input;
 const bmi_calculator={  
     init: (router) => {
-        const baseUrl = `${properties.api}/`;
+        const baseUrl = `/`;
         router.get(
           baseUrl + "Get_BMI_DATA",
           bmi_calculator.get
